@@ -1,0 +1,11 @@
+.App {
+  text-align: center;
+}
+
+.block {
+  display: block !important;
+}
+
+.mainWidth {
+  width: calc(100% + 156px);
+}
