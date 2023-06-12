@@ -9,3 +9,11 @@
 .mainWidth {
   width: calc(100% + 156px);
 }
+
+.link-to-home {
+  color: #f4f4f4;
+  text-decoration: none;
+}
+a.active {
+  background-color: #101f33;
+}

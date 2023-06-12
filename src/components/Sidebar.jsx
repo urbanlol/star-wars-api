@@ -1,6 +1,7 @@
+import { NavLink } from 'react-router-dom';
 import { Box, Paper, Typography, Button, ButtonGroup } from '@mui/material';
 
-function Sidebar() {
+function Sidebar({ datas }) {
   return (
     <Box
       component="nav"
@@ -23,26 +24,28 @@ function Sidebar() {
           <Typography
             component="h1"
             sx={{
-              p: '15px',
+              p: '17px 15px',
               fontSize: 20,
               fontWeight: 'medium',
               letterSpacing: 0,
               textTransform: 'uppercase',
             }}
           >
-            Swapi
+            <NavLink to="/" className='link-to-home'>Swapi</NavLink>
           </Typography>
         </Box>
       </Paper>
       <ButtonGroup
-        sx={{ width: '100%' }}
+        sx={{ width: '100%', mt: '25px' }}
         orientation="vertical"
         aria-label="vertical contained button group"
         variant="text"
       >
-        <Button key="people">people</Button>
-        <Button key="planets">planets</Button>
-        <Button key="films">films</Button>
+        {datas.map((data, i) => (
+          <NavLink to={`/${data[0]}`} key={i + 1}>
+            <Button sx={{ width: '100%' }}>{data[0]}</Button>
+          </NavLink>
+        ))}
       </ButtonGroup>
     </Box>
   );
