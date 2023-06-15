@@ -1,9 +1,11 @@
 import { BrowserRouter, Route, Routes } from 'react-router-dom';
 import { Box } from '@mui/material';
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Fragment } from 'react';
+import rand from './modules/rand';
 import MainLayout from './layouts/MainLayout';
 import Sidebar from './components/Sidebar';
 import List from './components/List';
+import ListItemSingle from './components/ListItemSingle';
 import Home from './pages/Home';
 import './App.css';
 
@@ -35,13 +37,18 @@ function App() {
           <Sidebar datas={data} />
           <Routes>
             <Route path="/" element={<MainLayout />}>
-            <Route index element={<Home />} />
+              <Route index element={<Home />} />
               {data.map((el, i) => (
-                <Route
-                  path={el[0]}
-                  element={<List category={el[1]} />}
-                  key={el[0]}
-                />
+                <Fragment key={rand(10000)}>
+                  <Route
+                    path={el[0]}
+                    element={<List category={el[1]} parent={el[0]} />}
+                  />
+                  <Route
+                    path={`${el[0]}/:name`}
+                    element={<ListItemSingle category={el[1]} parent={el[0]} />}
+                  />
+                </Fragment>
               ))}
             </Route>
           </Routes>

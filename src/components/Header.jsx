@@ -72,14 +72,15 @@ function Header() {
     <AppBar color="primary" position="sticky" elevation={0}>
       <Box component="nav">
         <Container>
-          <Toolbar className={classes.toolbar} >
+          <Toolbar className={classes.toolbar}>
             <IconButton
               color="inherit"
               aria-label="open drawer"
               edge="start"
               sx={{ display: { xs: 'flex', md: 'none' } }}
+              onClick={toggleBurger}
             >
-              <MenuIcon onClick={toggleBurger}/>
+              <MenuIcon />
             </IconButton>
             <Typography
               variant="h6"

@@ -38,7 +38,7 @@ function MainLayout() {
                 alignSelf: 'end',
               }}
             >
-              <Paginator />
+              {/* <Paginator /> */}
             </Container>
           </Box>
         </Box>
