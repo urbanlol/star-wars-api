@@ -2,7 +2,6 @@ import { Outlet } from 'react-router-dom';
 import { Container, Box } from '@mui/material';
 import Header from '../components/Header';
 import { useNavigate } from 'react-router-dom';
-// import Paginator from '../components/Paginator';
 
 function MainLayout({ search, setSearch }) {
   const navigation = useNavigate();

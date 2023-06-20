@@ -14,6 +14,7 @@ function App() {
   const url = 'https://swapi.dev/api/';
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
+  const [items, setItems] = useState([]);
 
   useEffect(() => {
     fetch(url)
@@ -30,6 +31,24 @@ function App() {
       });
   }, []);
 
+  useEffect(() => {
+    data.map((data, i) => {
+      fetch(data[1])
+        .then((response) => response.json())
+        .then((data) =>
+          data.results.map((res) => {
+            items.push(res);
+            setItems(items);
+
+            return items;
+          })
+        )
+        .catch((err) => console.error(`An error occurred: ${err}`));
+
+      return items;
+    });
+  }, [data, items])
+
   return (
     <BrowserRouter>
       <div className="App">
@@ -38,7 +57,7 @@ function App() {
           <Routes>
             <Route path="/" element={<MainLayout  searchData={search} setSearch={setSearch}/>}>
               <Route index element={<Home />} />
-              <Route path="search-results" element={<SearchPage datas={data} searchData={search}/>} />
+              <Route path="search-results" element={<SearchPage datas={items} searchData={search}/>} />
               {data.map((el, i) => (
                 <Fragment key={rand(10000)}>
                   <Route

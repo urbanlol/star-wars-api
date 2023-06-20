@@ -12,8 +12,7 @@ import { NavLink } from 'react-router-dom';
 import rand from '../modules/rand';
 
 function SearchPage({ datas, searchData }) {
-  const [items, setItems] = useState([]);
-  const [itemList, setItemList] = useState(items);
+  const [itemList, setItemList] = useState(datas);
   const [result, setResult] = useState([]);
 
   const filtered = (searchText, list) => {
@@ -27,29 +26,11 @@ function SearchPage({ datas, searchData }) {
   };
 
   useEffect(() => {
-    datas.map((data, i) => {
-      fetch(data[1])
-        .then((response) => response.json())
-        .then((data) =>
-          data.results.map((res) => {
-            items.push(res);
-            setItems(items);
-
-            return items;
-          })
-        )
-        .catch((err) => console.error(`An error occurred: ${err}`));
-
-      return items;
-    });
-  }, [datas, items, searchData]);
-
-  useEffect(() => {
     setTimeout(() => {
-      const filteredItems = filtered(searchData, items);
+      const filteredItems = filtered(searchData, datas);
       setItemList(filteredItems);
-    }, 500);
-  }, [searchData, items]);
+    }, 200);
+  }, [searchData, datas]);
 
   useEffect(() => {
     const table = {};
