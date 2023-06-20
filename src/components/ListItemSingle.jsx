@@ -47,13 +47,12 @@ function ListItemSingle({ category }) {
       maxWidth: '340px',
       fontSize: '1.8rem',
       margin: '0 auto',
-      backgroundColor: '#b6cce2',
+      backgroundColor: '#b6cce2 !important',
     },
     skeletonItem: {
-      marginBottom: '13px',
       maxWidth: '992px',
       marginBottom: '13px',
-      backgroundColor: '#b6cce2',
+      backgroundColor: '#b6cce2 !important',
       '&:last-child': {
         marginBottom: '0px',
       },

@@ -1,12 +1,19 @@
-
 import { Outlet } from 'react-router-dom';
 import { Container, Box } from '@mui/material';
 import Header from '../components/Header';
-import Paginator from '../components/Paginator';
+import { useNavigate } from 'react-router-dom';
+// import Paginator from '../components/Paginator';
 
-function MainLayout() {
-  
+function MainLayout({ search, setSearch }) {
+  const navigation = useNavigate();
 
+  const handlerChange = (e) => {
+    if (!e.target.value) {
+      return navigation('/', { relative: 'path' });
+    }
+    setSearch(e.target.value);
+    navigation('/search-results', { relative: 'path' });
+  };
   return (
     <>
       <Box
@@ -18,7 +25,7 @@ function MainLayout() {
         }}
       >
         <Box className="mainContainer">
-          <Header />
+          <Header onChange={handlerChange} search={search} />
           <Box
             component="main"
             sx={{

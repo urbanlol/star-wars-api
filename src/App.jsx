@@ -8,17 +8,17 @@ import List from './components/List';
 import ListItemSingle from './components/ListItemSingle';
 import Home from './pages/Home';
 import './App.css';
+import SearchPage from './pages/SearchPage';
 
 function App() {
+  const url = 'https://swapi.dev/api/';
   const [data, setData] = useState([]);
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(null);
+  const [search, setSearch] = useState('');
 
   useEffect(() => {
-    fetch(`https://swapi.dev/api/`)
+    fetch(url)
       .then((response) => response.json())
       .then((usefulData) => {
-        setLoading(false);
         setData(usefulData);
         return usefulData;
       })
@@ -36,8 +36,9 @@ function App() {
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
           <Sidebar datas={data} />
           <Routes>
-            <Route path="/" element={<MainLayout />}>
+            <Route path="/" element={<MainLayout  searchData={search} setSearch={setSearch}/>}>
               <Route index element={<Home />} />
+              <Route path="search-results" element={<SearchPage datas={data} searchData={search}/>} />
               {data.map((el, i) => (
                 <Fragment key={rand(10000)}>
                   <Route
