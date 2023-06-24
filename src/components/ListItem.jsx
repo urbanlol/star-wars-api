@@ -19,7 +19,7 @@ function ListItem({ id, data, parent }) {
         </CardContent>
         <CardActions sx={{ justifyContent: 'center' }}>
           <NavLink to={`/${parent}/${id}`}>
-            <Button size="small">Learn More</Button>
+            <Button size="small">Read More</Button>
           </NavLink>
         </CardActions>
       </Card>

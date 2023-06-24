@@ -9,7 +9,6 @@ function List({ category, parent }) {
   const [pageQty, setPageQty] = useState(0);
   const [page, setPage] = useState(1);
   const BASE_URL = `${category}?page=${page}`;
-
   useEffect(() => {
     fetch(category)
       .then((response) => response.json())
@@ -26,6 +25,10 @@ function List({ category, parent }) {
         setData(null);
         setPageQty(null);
         setPage(1);
+        if (window.innerWidth <= 900) {
+          sideBar.classList.remove('block');
+          document.querySelector('.mainWidth').classList.remove('mainWidth')
+        }
       }
     });
   }, [category]);
@@ -38,7 +41,12 @@ function List({ category, parent }) {
 
   return (
     <>
-      <Grid container spacing={2} justifyContent="center" sx={{height: { md: 'calc(100vh - 99px)' },}}>
+      <Grid
+        container
+        spacing={2}
+        justifyContent="center"
+        sx={{ height: { md: 'calc(100vh - 99px)' } }}
+      >
         <Grid item xs={12}>
           <Grid container spacing={2} justifyContent="center">
             {data &&
