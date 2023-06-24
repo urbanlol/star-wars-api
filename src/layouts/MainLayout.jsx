@@ -28,7 +28,6 @@ function MainLayout({ search, setSearch }) {
           <Box
             component="main"
             sx={{
-              // height: { md: 'calc(100vh - 64px)' },
               display: 'flex',
               flexWrap: 'wrap',
               justifyContent: 'center',
@@ -36,15 +35,6 @@ function MainLayout({ search, setSearch }) {
           >
             <Container sx={{ mt: '50px' }}>
               <Outlet />
-            </Container>
-            <Container
-              sx={{
-                marginTop: { xs: '25px', md: 0 },
-                marginBottom: '25px',
-                alignSelf: 'end',
-              }}
-            >
-              {/* <Paginator /> */}
             </Container>
           </Box>
         </Box>

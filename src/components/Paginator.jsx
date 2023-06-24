@@ -1,14 +1,20 @@
-import { Pagination, Stack } from '@mui/material';
+import { Grid, Pagination, Stack } from '@mui/material';
 
-function Paginator() {
+function Paginator({count, page, onChange}) {
   return (
-    <Stack spacing={2}>
-      <Pagination
-        count={5}
-        color="primary"
-        sx={{ display: 'flex', justifyContent: 'center' }}
-      />
-    </Stack>
+    <>
+      <Grid item xs={12} display='flex' justifyContent='center' alignItems='center'>
+        <Stack spacing={2}>
+          <Pagination
+            count={count}
+            page={page}
+            onChange={onChange}
+            color="primary"
+            sx={{ display: 'flex', justifyContent: 'center' }}
+          />
+        </Stack>
+      </Grid>
+    </>
   );
 }
 
