@@ -13,9 +13,20 @@ import MenuIcon from '@material-ui/icons/Menu';
 const toggleBurger = (e) => {
   const sideBar = document.querySelector('.sideBar');
   const mainContainer = document.querySelector('.mainContainer');
+
   if (!!e.currentTarget) {
     sideBar.classList.toggle('block');
     mainContainer.classList.toggle('mainWidth');
+    sideBar.addEventListener('click', (e) => {
+      const sideBarTarget = e.target;
+      if (
+        (sideBarTarget.nodeName === 'BUTTON' && window.innerWidth <= 900) ||
+        sideBarTarget.classList.contains('link-to-home')
+      ) {
+        sideBar.classList.remove('block');
+        mainContainer.classList.remove('mainWidth');
+      }
+    });
   }
 };
 
@@ -55,7 +66,7 @@ function Header({ onChange, search }) {
             >
               What are you searching?
             </Typography>
-            <Search onChange={onChange} search={search}/>
+            <Search onChange={onChange} search={search} />
           </Toolbar>
         </Container>
       </Box>

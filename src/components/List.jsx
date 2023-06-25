@@ -25,10 +25,6 @@ function List({ category, parent }) {
         setData(null);
         setPageQty(null);
         setPage(1);
-        if (window.innerWidth <= 900) {
-          sideBar.classList.remove('block');
-          document.querySelector('.mainWidth').classList.remove('mainWidth')
-        }
       }
     });
   }, [category]);
