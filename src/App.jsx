@@ -11,26 +11,21 @@ import './App.css';
 import SearchPage from './pages/SearchPage';
 
 function App() {
-  const url = 'https://swapi.dev/api/';
+  const swapiData = {
+    films: 'https://sw-api.starnavi.io/films/',
+    people: 'https://sw-api.starnavi.io/people/',
+    planets: 'https://sw-api.starnavi.io/planets/',
+    species: 'https://sw-api.starnavi.io/species/',
+    starships: 'https://sw-api.starnavi.io/starships/',
+    vehicles: 'https://sw-api.starnavi.io/vehicles/',
+  };
   const [data, setData] = useState([]);
   const [search, setSearch] = useState('');
   const [items, setItems] = useState([]);
 
   useEffect(() => {
-    fetch(url)
-      .then((response) => response.json())
-      .then((usefulData) => {
-        setData(usefulData);
-        return usefulData;
-      })
-      .then((datas) => {
-        setData(Object.entries(datas));
-      })
-      .catch((err) => {
-        console.error(`An error occurred: ${err}`);
-      });
+    setData(Object.entries(swapiData));
   }, []);
-
   useEffect(() => {
     data.map((data, i) => {
       fetch(data[1])
@@ -47,7 +42,7 @@ function App() {
 
       return items;
     });
-  }, [data, items])
+  }, [data, items]);
 
   return (
     <BrowserRouter>
@@ -55,9 +50,15 @@ function App() {
         <Box sx={{ display: 'flex', minHeight: '100vh' }}>
           <Sidebar datas={data} />
           <Routes>
-            <Route path="/" element={<MainLayout  searchData={search} setSearch={setSearch}/>}>
+            <Route
+              path="/"
+              element={<MainLayout searchData={search} setSearch={setSearch} />}
+            >
               <Route index element={<Home />} />
-              <Route path="search-results" element={<SearchPage datas={items} searchData={search}/>} />
+              <Route
+                path="search-results"
+                element={<SearchPage datas={items} searchData={search} />}
+              />
               {data.map((el, i) => (
                 <Fragment key={rand(10000)}>
                   <Route

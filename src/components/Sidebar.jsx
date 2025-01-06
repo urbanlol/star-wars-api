@@ -1,11 +1,5 @@
 import { NavLink } from 'react-router-dom';
-import {
-  Box,
-  Paper,
-  Typography,
-  Button,
-  ButtonGroup,
-} from '@mui/material';
+import { Box, Paper, Typography, Button, ButtonGroup } from '@mui/material';
 import rand from '../modules/rand';
 
 function Sidebar({ datas }) {
@@ -51,13 +45,10 @@ function Sidebar({ datas }) {
         variant="text"
       >
         {datas.map((data, i) => (
-          <NavLink
-            to={`/${data[0]}`}
-            key={rand(10000)}
-          >
+          <NavLink to={`/${data[0]}`} key={rand(10000)}>
             <Button sx={{ width: '100%' }}>{data[0]}</Button>
           </NavLink>
-        ))}        
+        ))}
       </ButtonGroup>
     </Box>
   );
